@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@font-face {
+  font-family: "Norse-Bold";
+  src: url(./assets/Norse-Bold.otf);
+  font-weight: bold;
+}
 
 :root {
   --medium-screen-size: 700px; /* It's not working with media-query 
                                 in current CSS3 */
+  --logo-background: rgba(10, 10, 10, 0.5);
+  --logo-fontsize: 72px;
+  --bright-text-color: #fefefe;
 }
 
 body {
@@ -21,10 +29,42 @@ h1 {
 }
 
 .side-image {
+  display: flex;
+  position: relative;
+  flex-direction: column;
   height: 200px;
   width: 100%;
   background: darkgreen url(./assets/halie-west-25xggax4bSA-unsplash.jpg);
   background-size: 100% auto;
+  color: var(--bright-text-color);
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  font-family: "Norse-Bold", sans-serif;
+  font-size: var(--logo-fontsize);
+  background-color: var(--logo-background);
+}
+
+.logo img {
+  width: 0.9em;
+  height: auto;
+  margin: 10px 0;
+}
+
+.copyright {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 0.5em;
+}
+
+.copyright a {
+  color: var(--bright-text-color);
 }
 
 @media (min-width: 700px) {
