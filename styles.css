@@ -6,15 +6,17 @@
 }
 
 :root {
-  --small-screen-size: 700px; /* It's not working with media-query 
+  --small-screen-size: 600px;
+  --medium-screen-size: 900px; /* It's not working 
+                                with media-query 
                                 in current CSS3 */
-  --medium-screen-size: 900px;
   --large-screen-size: 1200px;
   --side-img-min-width: 300px;
-  --smaller-gap: 1em;
-  --small-gap: 2em;
+  --smaller-gap: 0.75rem;
+  --small-gap: 2rem;
   --medium-gap: calc(2 * var(--small-gap));
-  --large-gap: 7em;
+  --large-gap: 7rem;
+  --radius: 5px;
   --logo-fontsize: 72px;
   --logo-background: rgba(10, 10, 10, 0.5);
   --bright-color: white;
@@ -22,6 +24,7 @@
   --form-color: rgb(78, 78, 78);
   --input-border: #e5e7eb;
   --input-focused: dodgerblue;
+  --button-color: #596d48;
 }
 
 body {
@@ -79,15 +82,18 @@ body {
   background: var(--bright-color);
   padding: var(--smaller-gap) 0 var(--small-gap) var(--small-gap);
   color: var(--form-color);
+  box-shadow: 0 3px 5px darkgray;
 }
 
 .form-container h2 {
   margin-top: 0;
+  padding: 0;
+  margin-bottom: var(--smaller-gap);
 }
 
 article,
 .button-container {
-  margin: var(--smaller-gap) var(--small-gap) var(--small-gap) var(--small-gap);
+  margin: var(--small-gap) var(--small-gap) var(--smaller-gap) var(--small-gap);
 }
 
 article {
@@ -115,22 +121,22 @@ main {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-right: var(--small-gap);
+  margin-right: var(--medium-gap);
 }
 
 .form-input input {
   padding: 5px 10px 5px 10px;
   border: 2px solid var(--input-border);
-  border-radius: 5px;
+  border-radius: var(--radius);
   font-family: "Roboto", sans-serif;
-  width: 250px;
+  width: max(20vw, 213px);
   box-sizing: border-box;
 }
 
 .form-input input:focus {
   outline: none;
   border: 1px solid var(--input-focused);
-  border-radius: 5px;
+  border-radius: var(--radius);
   box-shadow: 3px 3px 3px var(--input-border);
 }
 
@@ -160,6 +166,46 @@ main {
   box-shadow: none;
 }
 
+.button-container {
+  display: block;
+  max-width: 600px;
+}
+
+.button-container button {
+  background: var(--button-color);
+  color: var(--bright-color);
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: var(--smaller-gap) var(--small-gap);
+  border: none;
+  border-radius: var(--radius);
+  margin-bottom: var(--small-gap);
+}
+
+.button-container a {
+  margin: 0 var(--radius);
+  text-decoration: none;
+  color: var(--button-color);
+  font-weight: bold;
+}
+
+@media (min-width: 600px) {
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .button-container button {
+    margin-bottom: 0;
+  }
+
+  article {
+    margin-bottom: var(--smaller-gap);
+    margin-top: var(--smaller-gap);
+  }
+}
+
 @media (min-width: 900px) {
   .main-container {
     flex-direction: row;
@@ -181,5 +227,14 @@ main {
 
   article {
     margin-top: var(--large-gap);
+    margin-bottom: var(--small-gap);
+  }
+
+  .button-container {
+    display: block;
+  }
+
+  .button-container button {
+    margin-bottom: var(--small-gap);
   }
 }
