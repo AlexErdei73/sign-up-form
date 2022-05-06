@@ -6,15 +6,24 @@
 }
 
 :root {
-  --medium-screen-size: 700px; /* It's not working with media-query 
+  --small-screen-size: 700px; /* It's not working with media-query 
                                 in current CSS3 */
-  --logo-background: rgba(10, 10, 10, 0.5);
+  --medium-screen-size: 900px;
+  --large-screen-size: 1200px;
+  --side-img-min-width: 300px;
+  --smaller-gap: 1em;
+  --small-gap: 2em;
+  --medium-gap: calc(2 * var(--small-gap));
+  --large-gap: 7em;
   --logo-fontsize: 72px;
-  --bright-text-color: #fefefe;
+  --logo-background: rgba(10, 10, 10, 0.5);
+  --bright-color: #fefefe;
+  --main-background-color: #dedede;
 }
 
 body {
   font-family: "Roboto", sans-serif;
+  background: var(--main-background-color);
   margin: 0;
   padding: 0;
 }
@@ -36,7 +45,7 @@ h1 {
   width: 100%;
   background: darkgreen url(./assets/halie-west-25xggax4bSA-unsplash.jpg);
   background-size: 100% auto;
-  color: var(--bright-text-color);
+  color: var(--bright-color);
 }
 
 .logo {
@@ -67,15 +76,54 @@ h1 {
   color: var(--bright-text-color);
 }
 
+.form-container {
+  background: var(--bright-color);
+  padding: var(--smaller-gap) var(--large-gap) var(--small-gap) var(--small-gap);
+}
+
+.form-container h3 {
+  margin-top: 0;
+}
+
+article,
+.button-container {
+  margin: var(--smaller-gap) var(--large-gap) var(--small-gap) var(--small-gap);
+}
+
+article {
+  margin-bottom: var(--medium-gap);
+}
+
+article p {
+  font-weight: bold;
+  font-size: 1.1em;
+  max-width: 500px;
+}
+
+main {
+  flex-grow: 1;
+}
+
 @media (min-width: 700px) {
   .main-container {
     flex-direction: row;
   }
 
   .side-image {
-    width: max(30%, 300px);
+    display: block;
+    width: max(30%, var(--side-img-min-width));
+    flex-shrink: 0;
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  .logo {
+    position: absolute;
+    top: 20vh;
+  }
+
+  article {
+    margin-top: var(--large-gap);
   }
 }
