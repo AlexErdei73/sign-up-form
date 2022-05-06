@@ -17,8 +17,11 @@
   --large-gap: 7em;
   --logo-fontsize: 72px;
   --logo-background: rgba(10, 10, 10, 0.5);
-  --bright-color: #fefefe;
-  --main-background-color: #dedede;
+  --bright-color: white;
+  --main-background-color: #efefef;
+  --form-color: rgb(78, 78, 78);
+  --input-border: #e5e7eb;
+  --input-focused: dodgerblue;
 }
 
 body {
@@ -26,10 +29,6 @@ body {
   background: var(--main-background-color);
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  color: blue;
 }
 
 .main-container {
@@ -78,16 +77,17 @@ h1 {
 
 .form-container {
   background: var(--bright-color);
-  padding: var(--smaller-gap) var(--large-gap) var(--small-gap) var(--small-gap);
+  padding: var(--smaller-gap) 0 var(--small-gap) var(--small-gap);
+  color: var(--form-color);
 }
 
-.form-container h3 {
+.form-container h2 {
   margin-top: 0;
 }
 
 article,
 .button-container {
-  margin: var(--smaller-gap) var(--large-gap) var(--small-gap) var(--small-gap);
+  margin: var(--smaller-gap) var(--small-gap) var(--small-gap) var(--small-gap);
 }
 
 article {
@@ -96,15 +96,71 @@ article {
 
 article p {
   font-weight: bold;
-  font-size: 1.1em;
-  max-width: 500px;
+  font-size: 1.3em;
+  max-width: 600px;
 }
 
 main {
   flex-grow: 1;
 }
 
-@media (min-width: 700px) {
+.form-line {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-right: var(--small-gap);
+}
+
+.form-input input {
+  padding: 5px 10px 5px 10px;
+  border: 2px solid var(--input-border);
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+.form-input input:focus {
+  outline: none;
+  border: 1px solid var(--input-focused);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px var(--input-border);
+}
+
+.form-input label {
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.form-input .help {
+  height: 15px;
+  color: red;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.error .help {
+  visibility: visible;
+}
+
+.error input {
+  border: 1px solid red;
+}
+
+.error input:focus {
+  border: 1px solid red;
+  box-shadow: none;
+}
+
+@media (min-width: 900px) {
   .main-container {
     flex-direction: row;
   }
