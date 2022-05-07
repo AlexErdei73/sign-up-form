@@ -16,8 +16,20 @@ function removeErrors() {
 function handleRequiredValidation(container, input, help, name) {
   const value = input.value;
   if (value !== "") return;
-  help.textContent = `${name} required`;
+  help.textContent = `*${name} required`;
   container.classList.add("error");
+}
+
+function handlePasswordConfirmation(inputObject) {
+  const { password, confirmPassword } = inputObject;
+  const passwordValue = password.input.value;
+  const confirmPasswordValue = confirmPassword.input.value;
+  if (passwordValue === "" || confirmPasswordValue === "") return;
+  if (passwordValue === confirmPasswordValue) return;
+  password.container.classList.add("error");
+  confirmPassword.container.classList.add("error");
+  password.help.textContent = "*Passwords do not match";
+  confirmPassword.help.textContent = "";
 }
 
 function handleSubmit(e) {
@@ -36,6 +48,19 @@ function handleSubmit(e) {
     confirmPasswordHelp,
     "Confirm Password"
   );
+  const input = {
+    password: {
+      input: passwordInput,
+      container: passwordContainer,
+      help: passwordHelp,
+    },
+    confirmPassword: {
+      input: confirmPasswordInput,
+      container: confirmPasswordContainer,
+      help: confirmPasswordHelp,
+    },
+  };
+  handlePasswordConfirmation(input);
 }
 
 form.addEventListener("submit", handleSubmit);
