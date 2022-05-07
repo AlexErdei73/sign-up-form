@@ -6,10 +6,36 @@ const confirmPasswordHelp = document.querySelector("#confirm-password + .help");
 const confirmPasswordContainer = document.querySelector(
   "#confirm-password-form-input"
 );
+const form = document.querySelector("form");
 
 function removeErrors() {
   passwordContainer.classList.remove("error");
   confirmPasswordContainer.classList.remove("error");
 }
 
-removeErrors();
+function handleRequiredValidation(container, input, help, name) {
+  const value = input.value;
+  if (value !== "") return;
+  help.textContent = `${name} required`;
+  container.classList.add("error");
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  console.log("Form Submitted!");
+  removeErrors();
+  handleRequiredValidation(
+    passwordContainer,
+    passwordInput,
+    passwordHelp,
+    "Password"
+  );
+  handleRequiredValidation(
+    confirmPasswordContainer,
+    confirmPasswordInput,
+    confirmPasswordHelp,
+    "Confirm Password"
+  );
+}
+
+form.addEventListener("submit", handleSubmit);
